@@ -1,7 +1,9 @@
 var todaysDate = moment().format("ddd, MMM do YYYY");
-var todaysTime = moment().format("LT");
+var todaysTime = moment().format("HHmm");
 $("#currentDay").html(todaysDate);
 $("#currentTime").html(todaysTime);
+
+var scheduleHours = $(".hour");
 
 function timeTracker() {
   //get current number of hours.
@@ -9,14 +11,12 @@ function timeTracker() {
 
   // loop over time blocks
   $(".time-block").each(function () {
-    var blockTime = parseInt($(this).attr("id").split("hour")[1]);
-
     // To check the time and add the classes for background indicators
-    if (blockTime < timeNow) {
+    if (scheduleHours < timeNow) {
       $(this).removeClass("future");
       $(this).removeClass("present");
       $(this).addClass("past");
-    } else if (blockTime === timeNow) {
+    } else if (scheduleHours === timeNow) {
       $(this).removeClass("past");
       $(this).removeClass("future");
       $(this).addClass("present");
@@ -27,6 +27,8 @@ function timeTracker() {
     }
   });
 }
+
+console.log(scheduleHours);
 
 $(document).ready(function () {
   // saveBtn click listener
