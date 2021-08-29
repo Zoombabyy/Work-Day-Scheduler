@@ -1,22 +1,21 @@
-var todaysDate = moment().format("ddd, MMM do YYYY");
-var todaysTime = moment().format("HHmm");
+var todaysDate = moment().format("MMMM Do YYYY, h:mm a");
 $("#currentDay").html(todaysDate);
 $("#currentTime").html(todaysTime);
-
-var scheduleHours = $(".hour");
 
 function timeTracker() {
   //get current number of hours.
   var timeNow = moment().hour();
 
+  console.log("This is getting the time now", timeNow);
+
   // loop over time blocks
   $(".time-block").each(function () {
     // To check the time and add the classes for background indicators
-    if (scheduleHours < timeNow) {
+    if (parseInt($(this).attr("data-hour")) < timeNow) {
       $(this).removeClass("future");
       $(this).removeClass("present");
       $(this).addClass("past");
-    } else if (scheduleHours === timeNow) {
+    } else if (parseInt($(this).attr("data-hour")) === timeNow) {
       $(this).removeClass("past");
       $(this).removeClass("future");
       $(this).addClass("present");
@@ -27,8 +26,6 @@ function timeTracker() {
     }
   });
 }
-
-console.log(scheduleHours);
 
 $(document).ready(function () {
   // saveBtn click listener
