@@ -1,6 +1,5 @@
 var todaysDate = moment().format("MMMM Do YYYY, h:mm a");
 $("#currentDay").html(todaysDate);
-$("#currentTime").html(todaysTime);
 
 function timeTracker() {
   //get current number of hours.
